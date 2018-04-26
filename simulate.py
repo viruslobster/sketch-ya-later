@@ -8,16 +8,22 @@ import math
 with open(sys.argv[1], 'r') as f:
     points, m, n = pickle.load(f)
 
+if len(sys.argv) > 2:
+    TIME = int(sys.argv[2])
+else:
+    TIME = 10
+
 img = np.zeros((m, n, 3)).astype('uint8')
 
 last = None
-for i in range(points.shape[0]):
-    (j, i) = points[i, :]
+for k in range(points.shape[0]):
+    (j, i) = points[k, :]
     if last:
+        # print k
         cv2.line(img, (j, i), last, (0, 0, 255))
-
         cv2.imshow('image', img)
-        cv2.waitKey(int(1*math.sqrt((j-last[0])**2 + (i-last[1])**2)))
+        t = max(math.sqrt((j-last[0])**2 + (i-last[1])**2), 1)
+        cv2.waitKey(int(TIME*t))
         cv2.line(img, (j, i), last, (255, 255, 255))
     last = (j, i)
 

@@ -20,9 +20,9 @@ else:
 
 
 dx = int((NATIVE_M - m*scale)/2 + 0.5)
-dy = int(NATIVE_N - n*scale)/2 + 0.5)
+dy = int((NATIVE_N - n*scale)/2 + 0.5)
 
-points = np.int32(points * scale + 0.5) + np.array(dx, dy)
+points = np.int32(points * scale + 0.5) + np.array([dx, dy])
 
 ser = serial.Serial(ARDUINO_ADDR,BAUD_R)
 time.sleep(python_serial.READY_HIT)
