@@ -23,7 +23,10 @@ dx = int((NATIVE_M - m*scale)/2 + 0.5)
 dy = int((NATIVE_N - n*scale)/2 + 0.5)
 
 points = np.int32(points * scale + 0.5) + np.array([dx, dy])
+points = np.vstack((points, [0, 0]))
+# ser = serial.Serial(ARDUINO_ADDR,BAUD_R)
+# time.sleep(python_serial.READY_HIT)
+# python_serial.send(ser, points.tolist())
 
-ser = serial.Serial(ARDUINO_ADDR,BAUD_R)
-time.sleep(python_serial.READY_HIT)
-python_serial.send(ser, points.tolist())
+with open(sys.argv[1]+".etch", 'w') as f:
+    pickle.dump((points, n, m), f)
