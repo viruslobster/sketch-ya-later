@@ -2,10 +2,12 @@
 #define XYSteppers_h
 
 #include "DumbStepper.h"
-#define MAX_X 3160
-#define MAX_Y 2107
-#define X_WIGGLE 30
-#define Y_WIGGLE 30
+#define MAX_X 1580*2
+#define MAX_Y 1052*2
+#define LEFT_WIGGLE 15
+#define RIGHT_WIGGLE 15
+#define UP_WIGGLE 15
+#define DOWN_WIGGLE 15
 
 // library interface description
 class XYSteppers {

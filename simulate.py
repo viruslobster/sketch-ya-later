@@ -8,16 +8,22 @@ import math
 with open(sys.argv[1], 'r') as f:
     points, m, n = pickle.load(f)
 
+if len(sys.argv) > 3:
+    SCALE = float(sys.argv[3])
+else:
+    SCALE = 1
+
 if len(sys.argv) > 2:
     TIME = int(sys.argv[2])
 else:
     TIME = 10
 
-img = np.zeros((m, n, 3)).astype('uint8')
+img = np.zeros((int(m*SCALE), int(n*SCALE), 3)).astype('uint8')
 
 last = None
 for k in range(points.shape[0]):
-    (j, i) = points[k, :]
+    (j, i) = points[k, :] * SCALE
+    (j, i) = int(j), int(i)
     if last:
         # print k
         cv2.line(img, (j, i), last, (0, 0, 255))

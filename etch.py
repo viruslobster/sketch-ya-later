@@ -3,10 +3,10 @@ import sys
 import pickle
 import numpy as np
 import cv2
-import serial
-import python_serial
+#import serial
+#import python_serial
 import time
-NATIVE_M, NATIVE_N = 3160, 2107
+NATIVE_M, NATIVE_N = 3160/2, 2107/2
 ARDUINO_ADDR = '/dev/ttyACM0'
 BAUD_R = 9600
 
@@ -29,4 +29,4 @@ points = np.vstack((points, [0, 0]))
 # python_serial.send(ser, points.tolist())
 
 with open(sys.argv[1]+".etch", 'w') as f:
-    pickle.dump((points, n, m), f)
+    pickle.dump((points, NATIVE_N, NATIVE_M), f)

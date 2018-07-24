@@ -14,11 +14,11 @@ XYSteppers::XYSteppers (int max_speed, int motor_1_pin_1, int motor_1_pin_2, int
 }
 
 void XYSteppers::moveToPoint (int x, int y) {
-  if (x > 0 && x < MAX_X && y > 0 && y < MAX_Y) {
-    int xFixWiggle = (x > xLocation && !xForward) ? X_WIGGLE :
-                     (x < xLocation && xForward) ? -X_WIGGLE : 0;
-    int yFixWiggle = (y > yLocation && !yForward) ? Y_WIGGLE :
-                     (y < yLocation && yForward) ? -Y_WIGGLE : 0;
+  if (x >= 0 && x < MAX_X && y >= 0 && y < MAX_Y) {
+    int xFixWiggle = (x > xLocation && !xForward) ? RIGHT_WIGGLE :
+                     (x < xLocation && xForward) ? -LEFT_WIGGLE : 0;
+    int yFixWiggle = (y > yLocation && !yForward) ? DOWN_WIGGLE :
+                     (y < yLocation && yForward) ? -UP_WIGGLE : 0;
     stepMotors(xFixWiggle, yFixWiggle);
 
     xForward = (x < xLocation) ? false : (x > xLocation) ? true : xForward;
